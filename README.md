@@ -28,4 +28,4 @@
 - **Sección de comentarios** 💬
 - **Carrito de compras** 🛒
 
-![Logo](https://res.cloudinary.com/dclvhbrj3/image/upload/v1719355309/logo_fefe_bakes_lrwjkb.jpg)
+![Logo](https://res.cloudinary.com/dclvhbrj3/image/upload/v1719355309/logo_fefe_bakes_lrwkjb.jpg)

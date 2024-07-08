@@ -11,7 +11,7 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-router.use("/users", usersRoutes);
+router.use("/users", usersRoutes); // Todas las rutas de usuarios estarán prefijadas con /api/users
 router.use("/courses", coursesRoutes);
 router.use("/recipebooks", recipesRoutes);
 router.use("/password", passRoutes);

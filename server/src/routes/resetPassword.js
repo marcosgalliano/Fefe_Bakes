@@ -6,6 +6,6 @@ const {
 } = require("../controllers/passResetController");
 
 passRouter.post("/request-reset", requestPasswordReset);
-passRouter.post("/reset/:token", resetPassword);
+passRouter.post("/reset/", resetPassword);
 
 module.exports = passRouter;

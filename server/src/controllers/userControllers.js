@@ -1,6 +1,7 @@
 const { User } = require("../db");
 const bcrypt = require("bcryptjs");
-const { use } = require("../routes");
+const jwt = require("jsonwebtoken");
+require('dotenv').config();
 
 const createUser = async (data) => {
   try {
@@ -26,19 +27,48 @@ const getAllUsers = async () => {
 
 const loginUser = async (email, password) => {
   try {
-    const user = await User.findOne({
-      where: { email },
-    });
-    console.log(user);
-    if (user && (await bcrypt.compare(password, user.password))) {
-      return user;
-    } else {
+    const user = await User.findOne({ where: { email } });
+
+    if (!user) {
       return null;
     }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return null;
+    }
+
+    const payload = {
+      userId: user.id,
+      email: user.email,
+      role: user.role
+    };
+
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    return { user, token };
   } catch (error) {
-    console.error("Error logging in user", error);
+    console.error("Error logging in user:", error);
     throw error;
   }
 };
 
-module.exports = { createUser, getAllUsers, loginUser };
+const checkUserExists = async (identifier) => {
+  try {
+    // Determine if the identifier is an email or a UUID
+    const isEmail = identifier.includes('@');
+    
+    const user = await User.findOne({
+      where: isEmail
+        ? { email: identifier }
+        : { id: identifier }
+    });
+    
+    return user;
+  } catch (error) {
+    console.error("Error checking user existence: ", error);
+    throw error;
+  }
+};
+
+module.exports = { createUser, getAllUsers, loginUser, checkUserExists };

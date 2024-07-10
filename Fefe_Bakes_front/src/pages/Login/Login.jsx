@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
@@ -53,7 +54,7 @@ const Login = () => {
                             <input type="checkbox" id="remember" name="remember" />
                             <label htmlFor="remember">Recordarme</label>
                         </div>
-                        <a href="#">¿Olvidaste tu contraseña?</a>
+                        <Link to='/olvide-contraseña'>¿Olvidaste tu contraseña?</Link>
                     </div>
                     <div className='login-button'>
                         <button type="submit" className="btn">Iniciar sesión</button>
@@ -71,7 +72,7 @@ const Login = () => {
                     <p className="register-text">
                         ¿No tienes una cuenta?
                     </p>
-                    <a href="#">Registrate acá</a>
+                    <Link to='/registro' className='link' >Registrate acá</Link>
                 </div>
             </div>
             <div className="login-right">

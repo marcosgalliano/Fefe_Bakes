@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import Favorites from './pages/Favorites/Favorites';
 import Courses from './pages/Courses/Courses';
 import Catalog from './pages/Catalog/Catalog';
@@ -14,7 +15,8 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/iniciar-sesion" element={<Login />} />
-        <Route path="/registrarse" element={<Register />} />
+        <Route path="/registro" element={<Register />} />
+        <Route path="/olvide-contraseña" element={<ForgotPassword/>} />
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/favorites" element={<Favorites />} />

@@ -1,10 +1,14 @@
 .header {
-    background-color: #f8f8f8;
+    background-color: #FFFFFF;
     border-bottom: 1px solid #ddd;
-    position: relative;
+    position: fixed;
     height: 100px;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
     box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease-in-out;
+    overflow: hidden; 
 }
 
 .header-container {
@@ -16,7 +20,6 @@
 
 .logo {
     height: 80px;
-    transition: transform 0.3s ease-in-out;
 }
 
 .menu-icon {
@@ -34,7 +37,7 @@
 }
 
 .mobile-nav {
-    position: absolute;
+    position: fixed; 
     top: 100px;
     right: 0;
     width: 150px;
@@ -43,6 +46,9 @@
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
     transform: translateX(100%);
+    overflow-y: auto; 
+    z-index: 999; 
+    padding: 20px;
 }
 
 .mobile-nav.open {
@@ -51,7 +57,6 @@
 
 .mobile-nav .navegation,
 .mobile-nav .user-info {
-    padding: 10px;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
 }
@@ -64,24 +69,24 @@
 .account-section {
     display: flex;
     align-items: center;
-    padding: 5px;
+
 }
 
 .account-section .account-hr {
     flex-grow: 1;
     border: none;
     border-top: 1px solid #9c9c9c;
-    margin-left: 2px; 
+    margin-left: 2px;
 }
 
 .account-section .account-text {
-    font-size: 10px; 
+    font-size: 10px;
     color: var(--text-color-grey);
 }
 
 .mobile-nav ul {
     list-style: none;
-    width: 150px;
+    width: 100%; 
     padding: 0;
     margin: 0;
 }
@@ -94,12 +99,12 @@
 .mobile-nav .link {
     text-decoration: none;
     font-size: 12px;
-    color: #333;
+    color: black;
     transition: color 0.3s ease-in-out;
 }
 
 .mobile-nav .link:hover {
-    color: #555;
+    color: var(--color-hover);
 }
 
 .mobile-nav hr {
@@ -117,17 +122,21 @@
     vertical-align: middle;
 }
 
-.logout {
-    display: block;
-    margin-top: 20px; 
-    color: rgb(219, 19, 19);
+.login {
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-top: 50px;
+    background-color: var(--color-5);
+    padding: 5px;
+    color: var(--color-1);
     font-weight: normal;
     font-size: 12px;
-    padding: 10px;
     transition: color 0.3s ease-in-out;
 }
 
-.logout:hover {
+.login:hover {
     color: darkred;
 }
 
@@ -138,5 +147,3 @@
     color: var(--color-5);
     transition: transform 0.3s ease-in-out;
 }
-
-

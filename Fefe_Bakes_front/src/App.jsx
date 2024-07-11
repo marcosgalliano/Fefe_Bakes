@@ -6,6 +6,7 @@ import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import Favorites from './pages/Favorites/Favorites';
 import Courses from './pages/Courses/Courses';
 import Catalog from './pages/Catalog/Catalog';
+import ProductDetail from './components/ProductDetail/ProductDetail';
 import UserProfile from './pages/UserProfile/UserProfile';
 import Cart from './pages/Cart/Cart';
 import MainLayout from './components/MainLayout';
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/olvide-contraseña" element={<ForgotPassword/>} />
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/detalle-producto/:id" element={<ProductDetail />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/catalog" element={<Catalog />} />

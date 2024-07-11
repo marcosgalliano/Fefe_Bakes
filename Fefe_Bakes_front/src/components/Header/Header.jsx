@@ -47,7 +47,7 @@ const Header = () => {
                         </li>
                     </ul>
                 </div>
-                <a href="#" className="logout">Cerrar Sesión</a>
+                <Link to='/iniciar-sesion' className="login">Iniciar Sesión</Link>
             </nav>
         </header>
     );

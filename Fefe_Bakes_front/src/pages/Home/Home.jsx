@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Home.css';
 
 const Home = () => {
@@ -17,8 +18,34 @@ const Home = () => {
                     <div className="product-info">
                         <h4 className="product-title">Torta de Chocolate</h4>
                         <p className="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-                        <p className="product-price">$20.000</p>
-                        <button className="product-button">Ver Producto</button>
+                        <div className='card-flex'>
+                            <p className="product-price">$20.000</p>
+                            <Link to={`/detalle-producto/1`}>
+                                <button className="product-button">Ver Producto</button>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+                <div className="product-card">
+                    <img src="../../../public/images/card-cake-1.avif" alt="Torta de Chocolate" className="product-image" />
+                    <div className="product-info">
+                        <h4 className="product-title">Marquise</h4>
+                        <p className="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+                        <div className='card-flex'>
+                            <p className="product-price">$20.000</p>
+                            <button className="product-button">Ver Producto</button>
+                        </div>
+                    </div>
+                </div>
+                <div className="product-card">
+                    <img src="../../../public/images/card-cake-1.avif" alt="Torta de Chocolate" className="product-image" />
+                    <div className="product-info">
+                        <h4 className="product-title">Torta Oreo</h4>
+                        <p className="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+                        <div className='card-flex'>
+                            <p className="product-price">$20.000</p>
+                            <Link to='detalle-producto:id' className="product-button">Ver Producto</Link>
+                        </div>
                     </div>
                 </div>
             </div>

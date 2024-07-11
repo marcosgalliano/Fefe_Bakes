@@ -1,7 +1,7 @@
 const { User } = require("../db");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-require('dotenv').config();
+require("dotenv").config();
 
 const createUser = async (data) => {
   try {
@@ -41,10 +41,12 @@ const loginUser = async (email, password) => {
     const payload = {
       userId: user.id,
       email: user.email,
-      role: user.role
+      role: user.role,
     };
 
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
 
     return { user, token };
   } catch (error) {
@@ -56,14 +58,12 @@ const loginUser = async (email, password) => {
 const checkUserExists = async (identifier) => {
   try {
     // Determine if the identifier is an email or a UUID
-    const isEmail = identifier.includes('@');
-    
+    const isEmail = identifier.includes("@");
+
     const user = await User.findOne({
-      where: isEmail
-        ? { email: identifier }
-        : { id: identifier }
+      where: isEmail ? { email: identifier } : { id: identifier },
     });
-    
+
     return user;
   } catch (error) {
     console.error("Error checking user existence: ", error);
@@ -71,4 +71,27 @@ const checkUserExists = async (identifier) => {
   }
 };
 
-module.exports = { createUser, getAllUsers, loginUser, checkUserExists };
+const updateUser = async (id, data) => {
+  try {
+    if (data.password) {
+      const salt = await bcrypt.genSalt(10);
+      data.password = await bcrypt.hash(data.password, salt);
+    }
+
+    const [updated] = await User.update(data, {
+      where: { id },
+    });
+
+    if (updated) {
+      const updatedUser = await User.findOne({ where: { id } });
+      return updatedUser;
+    }
+
+    throw new Error("User not found");
+  } catch (error) {
+    console.error("Error updating user: ", error);
+    throw error;
+  }
+};
+
+module.exports = { createUser, getAllUsers, loginUser, checkUserExists, updateUser };

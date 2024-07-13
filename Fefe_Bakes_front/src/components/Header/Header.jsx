@@ -43,7 +43,7 @@ const Header = () => {
                         <li><Link to='/mi-perfil' className="link">Mi Perfil</Link></li>
                         <li><Link to='/favoritos' className="link">Mis Favoritos</Link></li>
                         <li>
-                            <Link to='/carrito' className="link">Carrito <span className="cart-badge">2</span></Link>
+                            <Link to='/cart' className="link">Carrito <span className="cart-badge">2</span></Link>
                         </li>
                     </ul>
                 </div>

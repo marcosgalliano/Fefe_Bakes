@@ -14,7 +14,7 @@ const Home = () => {
             <div className="products-section">
                 <h3>Productos Destacados</h3>
                 <div className="product-card">
-                    <img src="../../../public/images/card-cake-1.avif" alt="Torta de Chocolate" className="product-image" />
+                    <img src="https://res.cloudinary.com/dasch1s5i/image/upload/CakeLogin_zoqgnb.jpg" alt="Torta de Chocolate" className="product-image" />
                     <div className="product-info">
                         <h4 className="product-title">Torta de Chocolate</h4>
                         <p className="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
@@ -27,7 +27,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="product-card">
-                    <img src="../../../public/images/card-cake-1.avif" alt="Torta de Chocolate" className="product-image" />
+                    <img src="https://res.cloudinary.com/dasch1s5i/image/upload/CakeLogin_zoqgnb.jpg" alt="Torta de Chocolate" className="product-image" />
                     <div className="product-info">
                         <h4 className="product-title">Marquise</h4>
                         <p className="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
@@ -38,7 +38,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="product-card">
-                    <img src="../../../public/images/card-cake-1.avif" alt="Torta de Chocolate" className="product-image" />
+                    <img src="https://res.cloudinary.com/dasch1s5i/image/upload/CakeLogin_zoqgnb.jpg" alt="Torta de Chocolate" className="product-image" />
                     <div className="product-info">
                         <h4 className="product-title">Torta Oreo</h4>
                         <p className="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>

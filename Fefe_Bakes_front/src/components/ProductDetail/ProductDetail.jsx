@@ -10,7 +10,7 @@ const ProductDetail = () => {
         id,
         name: 'Torta de Chocolate',
         price: '$20.000',
-        img: '../../../public/images/card-cake-1.avif',
+        img: 'https://res.cloudinary.com/dasch1s5i/image/upload/CakeLogin_zoqgnb.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     };
 

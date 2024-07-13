@@ -27,10 +27,10 @@ const Header = () => {
             <nav className={`mobile-nav ${menuOpen ? 'open' : ''}`}>
                 <div className='navegation'>
                     <ul>
-                        <li><Link to='' className="link">Inicio</Link></li>
-                        <li><Link to='' className="link">Quién Soy</Link></li>
-                        <li><Link to='' className="link">Contacto</Link></li>
-                        <li><Link to='' className="link">Catálogo</Link></li>
+                        <li><Link to='/' className="link">Inicio</Link></li>
+                        <li><Link to='/sobre-mi' className="link">Quién Soy</Link></li>
+                        <li><Link to='/contacto' className="link">Contacto</Link></li>
+                        <li><Link to='/catalogo' className="link">Catálogo</Link></li>
                     </ul>
                 </div>
                 <div className='account-section'>
@@ -39,11 +39,11 @@ const Header = () => {
                 </div>
                 <div className='user-info'>
                     <ul>
-                        <li><Link to='' className="link">Mis Compras</Link></li>
-                        <li><Link to='' className="link">Mi Perfil</Link></li>
-                        <li><Link to='' className="link">Mis Favoritos</Link></li>
+                        <li><Link to='/mis-compras' className="link">Mis Compras</Link></li>
+                        <li><Link to='/mi-perfil' className="link">Mi Perfil</Link></li>
+                        <li><Link to='/favoritos' className="link">Mis Favoritos</Link></li>
                         <li>
-                            <Link to='' className="link">Carrito <span className="cart-badge">2</span></Link>
+                            <Link to='/carrito' className="link">Carrito <span className="cart-badge">2</span></Link>
                         </li>
                     </ul>
                 </div>

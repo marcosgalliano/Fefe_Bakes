@@ -31,13 +31,9 @@
     top: 10px;
     right: 10px;
     font-size: 24px;
-    color: red;
+    color: var(--color-hover);
     cursor: pointer;
     z-index: 1; 
-}
-
-.icon-div.filled{
-    color: red;
 }
 
 .product-detail .price {

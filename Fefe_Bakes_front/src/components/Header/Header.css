@@ -137,7 +137,7 @@
 }
 
 .login:hover {
-    color: darkred;
+    color: var(--color-hover);
 }
 
 .menu-open-icon,

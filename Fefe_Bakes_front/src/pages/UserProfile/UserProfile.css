@@ -1,0 +1,141 @@
+.user-profile {
+    font-family: Arial, sans-serif;
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--color-1);
+    margin-top: 100px;
+}
+
+.header-profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header-profile h1 {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+}
+
+.edit-button {
+    background: none;
+    border: none;
+    color: var(--color-5);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.edit-button:hover {
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.profile-card {
+    display: flex;
+    background-color: var(--color-2);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.profile-card-flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.file-input {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 80%;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.upload-icon {
+    font-size: 24px;
+    color: var(--color-5);
+    cursor: pointer;
+    margin-top: 10px; 
+}
+
+.profile-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-info h2 {
+    font-size: 16px;
+    margin: 0;
+}
+
+.profile-info p {
+    font-size: 14px;
+    margin: 2px 0;
+    color: black;
+}
+
+.hr-profile {
+    margin: 5px 0;
+}
+
+.edit-input {
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-2);
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.menu-item span {
+    font-size: 14px;
+    color: black;
+    font-weight: 600;
+}
+
+.update-button {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--color-5);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.update-button:hover {
+    background-color: var(--color-hover);
+}

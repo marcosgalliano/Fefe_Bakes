@@ -39,7 +39,15 @@ const Home = () => {
   return (
     <div className="home">
       <div className="profile-section">
-        <img src="" alt="Profile" className="profile-image" />
+        <img
+          src="https://res.cloudinary.com/dclvhbrj3/image/upload/v1721150707/Captura_de_pantalla_2024-06-28_164804_puveyl.png"
+          alt="Profile"
+          className="profile-image"
+        />
+        <div className="profile-links">
+          <ion-icon name="logo-instagram"></ion-icon>
+          <ion-icon name="mail-outline"></ion-icon>
+        </div>
         <h2 className="profile-name">Josefina Lopez Jallaguier</h2>
       </div>
       <div className="about-section">

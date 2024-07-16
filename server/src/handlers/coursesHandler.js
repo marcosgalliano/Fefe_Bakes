@@ -1,4 +1,4 @@
-const { createCourse } = require("../controllers/coursesController");
+const { createCourse, getAllCourses } = require("../controllers/coursesController");
 
 const createCourseHandler = async (req, res) => {
   try {
@@ -21,4 +21,25 @@ const createCourseHandler = async (req, res) => {
   }
 };
 
-module.exports = { createCourseHandler };
+
+const getCourseHandler = async (req, res) => {
+  try {
+    const allCourses = await getAllCourses();
+    if (allCourses.length === 0) {
+      return res
+        .status(204)
+        .json({ success: true, message: "No hay cursos disponibles" });
+    } else {
+      return res
+        .status(200)
+        .json({ success: true, message: "Lista de cursos", data: allCourses });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching all courses", error });
+  }
+};
+
+
+module.exports = { createCourseHandler, getCourseHandler };

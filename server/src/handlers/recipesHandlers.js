@@ -1,4 +1,4 @@
-const { createRecipe } = require("../controllers/recipesController");
+const { createRecipe, getAllRecipes } = require("../controllers/recipesController");
 
 const createRecipeHandler = async (req, res) => {
   try {
@@ -21,4 +21,23 @@ const createRecipeHandler = async (req, res) => {
   }
 };
 
-module.exports = { createRecipeHandler };
+const getRecipeHandler = async (req, res) => {
+  try {
+    const allRecipes = await getAllRecipes();
+    if (allRecipes.length === 0) {
+      return res
+        .status(204)
+        .json({ success: true, message: "No hay recetarios disponibles" });
+    } else {
+      return res
+        .status(200)
+        .json({ success: true, message: "Lista de recetarios", data: allRecipes });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching all recipes", error });
+  }
+};
+
+module.exports = { createRecipeHandler, getRecipeHandler };

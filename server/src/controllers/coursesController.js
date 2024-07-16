@@ -10,4 +10,15 @@ const createCourse = async (data) => {
   }
 };
 
-module.exports = { createCourse };
+const getAllCourses = async () => {
+  try {
+    const users = await Course.findAll();
+    return users;
+  } catch (error) {
+    console.error("Error fetching all Courses", error);
+    throw error;
+  }
+};
+
+
+module.exports = { createCourse, getAllCourses };

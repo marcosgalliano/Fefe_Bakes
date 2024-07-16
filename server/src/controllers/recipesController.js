@@ -10,4 +10,14 @@ const createRecipe = async (data) => {
   }
 };
 
-module.exports = { createRecipe };
+const getAllRecipes = async () => {
+  try {
+    const users = await RecipeBook.findAll();
+    return users;
+  } catch (error) {
+    console.error("Error fetching all recipes", error);
+    throw error;
+  }
+};
+
+module.exports = { createRecipe, getAllRecipes };

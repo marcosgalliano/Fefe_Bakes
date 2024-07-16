@@ -1,5 +1,7 @@
-import { useState } from "react";
-import "./Login.css";
+
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './Login.css';
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -14,7 +16,7 @@ const Login = () => {
     <div className="login-container">
       <div className="login-left">
         <img
-          src="https://res.cloudinary.com/dclvhbrj3/image/upload/v1719355309/logo_fefe_bakes_lrwkjb.jpg"
+          src="https://res.cloudinary.com/dasch1s5i/image/upload/fefeBakesLogo_ieewde.jpg"
           alt="Fefé Bakes"
           className="login-logo"
         />
@@ -69,7 +71,7 @@ const Login = () => {
               <input type="checkbox" id="remember" name="remember" />
               <label htmlFor="remember">Recordarme</label>
             </div>
-            <a href="#">¿Olvidaste tu contraseña?</a>
+            <Link to='/olvide-contraseña'>¿Olvidaste tu contraseña?</Link>
           </div>
           <div className="login-button">
             <button type="submit" className="btn">
@@ -87,13 +89,12 @@ const Login = () => {
         </form>
         <div className="register">
           <p className="register-text">¿No tienes una cuenta?</p>
-          <a href="#">Registrate acá</a>
+          <Link to='/registro'>Registrate acá</Link>
         </div>
       </div>
       <div className="login-right">
         <img
-          src="../../../public/images/loginCakeimg.avif"
-          alt="Cake"
+          src="https://res.cloudinary.com/dasch1s5i/image/upload/loginCakeimg_peypuc.jpg"
           className="login-cake-image"
         />
       </div>

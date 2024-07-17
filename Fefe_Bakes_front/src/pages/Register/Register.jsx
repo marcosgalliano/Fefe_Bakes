@@ -70,7 +70,7 @@ const Register = () => {
                         <Link to='/olvide-contraseña'>¿Olvidaste tu contraseña?</Link>
                     </div>
                     <div className='login-button'>
-                        <button type="submit" className="btn">Iniciar sesión</button>
+                        <button type="submit" className="btn">Registrarse</button>
                     </div>
                     <div className='login-medium'>
                         <p> O </p>

@@ -1,56 +1,37 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getAllProducts } from '../../redux/actions/getAllProducts';
+import { setFilters } from '../../redux/actions/filterActions';
 import './Catalog.css';
-
-const productsData = [
-    {
-        id: 1,
-        name: 'Torta Oreo',
-        category: 'Cursos',
-        price: '$20.000',
-        img: '../../../public/images/card-cake-1.avif',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-    },
-    {
-        id: 2,
-        name: 'Recetario Básico',
-        category: 'Recetarios',
-        price: '$10.000',
-        img: 'https://res.cloudinary.com/dasch1s5i/image/upload/course-img_fg7ajh.jpg',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-    },
-    {
-        id: 3,
-        name: 'Promoción Especial',
-        category: 'Promociones',
-        price: '$15.000',
-        img: 'https://res.cloudinary.com/dasch1s5i/image/upload/recetario-img_h8bixc.jpg',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-    },
-];
 
 const Catalog = () => {
 
-    const [filters, setFilters] = useState({
-        Cursos: false,
-        Recetarios: false,
-        Promociones: false,
-    });
+    const dispatch = useDispatch();
+    const products = useSelector((state) => state.products);
+    const filters = useSelector((state) => state.filters);
+
+    useEffect(() => {
+        dispatch(getAllProducts());
+    }, [dispatch]);
+
+    console.log("Products in component: ", products);
 
     const handleFilterChange = (e) => {
         const { name, checked } = e.target;
-        setFilters((prevFilters) => ({
-            ...prevFilters,
+        dispatch(setFilters({
+            ...filters,
             [name]: checked,
         }));
     };
 
-    const filteredProducts = productsData.filter((product) => {
+    const filteredProducts = products.filter((product) => {
         if (!filters.Cursos && !filters.Recetarios && !filters.Promociones) {
             return true;
         }
         return filters[product.category];
     });
+
 
     return (
         <div className="container">

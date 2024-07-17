@@ -9,6 +9,7 @@ import Catalog from './pages/Catalog/Catalog';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import UserProfile from './pages/UserProfile/UserProfile';
 import Cart from './pages/Cart/Cart';
+import Contact from './pages/Contact/Contact';
 import MainLayout from './components/MainLayout';
 
 const App = () => {
@@ -21,10 +22,11 @@ const App = () => {
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/detalle-producto/:id" element={<ProductDetail />} />
-          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/favoritos" element={<Favorites />} />
+          <Route path="/contacto" element={<Contact />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/catalogo" element={<Catalog />} />
-          <Route path="/user-profile" element={<UserProfile />} />
+          <Route path="/perfil" element={<UserProfile />} />
           <Route path="/cart" element={<Cart />} />
         </Route>
       </Routes>

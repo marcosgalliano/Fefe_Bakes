@@ -14,7 +14,7 @@ const Header = () => {
     return (
         <header className="header">
             <div className="header-container">
-                <img src="../../../public/images/fefeBakesLogo.png" alt="Logo" className="logo" />
+                <img src="https://res.cloudinary.com/dclvhbrj3/image/upload/v1721152837/logo_fefe_bakescopy_xkxa1b.jpg" alt="Logo" className="logo" />
                 <div className="menu-icon" onClick={toggleMenu}>
                     <span>Inicio</span>
                     {menuOpen ? (

@@ -20,5 +20,4 @@ const getAllCourses = async () => {
   }
 };
 
-
 module.exports = { createCourse, getAllCourses };

@@ -1,15 +1,35 @@
-
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios'; 
 import './Login.css';
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handlePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    try {
+      const response = await axios.post('http://localhost:3001/api/users/login', { email, password });
+      const { user } = response.data;
+
+      if (user.isAdmin) {
+        navigate('/admin');
+      } else {
+        navigate('/');
+      }
+    } catch (error) {
+      setError("Credenciales inválidas. Inténtalo de nuevo.");
+    }
   };
 
   return (
@@ -22,7 +42,7 @@ const Login = () => {
         />
         <h1>Bienvenido !</h1>
         <p className="subtitle">Por favor ingrese sus datos</p>
-        <form className="login-form">
+        <form className="login-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <input
               type="email"
@@ -66,6 +86,7 @@ const Login = () => {
               />
             </button>
           </div>
+          {error && <div className="error-message">{error}</div>}
           <div className="form-remember">
             <div className="remember-check">
               <input type="checkbox" id="remember" name="remember" />

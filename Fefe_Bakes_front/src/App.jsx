@@ -12,13 +12,20 @@ import Cart from './pages/Cart/Cart';
 import Contact from './pages/Contact/Contact';
 import MainLayout from './components/MainLayout';
 
+//Admim
+import AdminDashboard from './pages/Admin/AdminDashboard';
+import PrivateRoute from './components/Private/PrivateRoute';
+import ManageCourses from './pages/Admin/ManageCourses';
+import { ManagePromotions } from './pages/Admin/ManagePromotions';
+import {ManageRecipes} from './pages/Admin/ManageRecipes';
+
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route path="/iniciar-sesion" element={<Login />} />
         <Route path="/registro" element={<Register />} />
-        <Route path="/olvide-contraseña" element={<ForgotPassword/>} />
+        <Route path="/olvide-contraseña" element={<ForgotPassword />} />
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/detalle-producto/:id" element={<ProductDetail />} />
@@ -30,6 +37,11 @@ const App = () => {
           <Route path="/mi-perfil" element={<UserProfile />} />
           <Route path="/cart" element={<Cart />} />
         </Route>
+        {/* Rutas protegidas */}
+        <Route path="/admin" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} /> 
+        <Route path="/admin/cursos" element={<PrivateRoute><ManageCourses /></PrivateRoute>} />
+        <Route path="/admin/recetarios" element={<PrivateRoute><ManageRecipes /></PrivateRoute>} />
+        <Route path="/admin/promociones" element={<PrivateRoute><ManagePromotions /></PrivateRoute>} />
       </Routes>
     </Router>
   );

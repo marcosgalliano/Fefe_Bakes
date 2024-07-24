@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios'; 
+import { login } from '../../redux/actions/authActions'; 
 import './Login.css';
 
 const Login = () => {
@@ -9,27 +10,31 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const authError = useSelector((state) => state.auth.authError);
+  const token = useSelector((state) => state.auth.token);
+
+  useEffect(() => {
+    if (token) {
+      navigate('/');
+    }
+  }, [token, navigate]);
 
   const handlePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
 
-    try {
-      const response = await axios.post('http://localhost:3001/api/users/login', { email, password });
-      const { user } = response.data;
-
-      if (user.isAdmin) {
-        navigate('/admin');
-      } else {
+    dispatch(login(email, password))
+      .then(() => {
         navigate('/');
-      }
-    } catch (error) {
-      setError("Credenciales inválidas. Inténtalo de nuevo.");
-    }
+      })
+      .catch(() => {
+        setError("Credenciales inválidas. Inténtalo de nuevo.");
+      });
   };
 
   return (
@@ -86,6 +91,7 @@ const Login = () => {
               />
             </button>
           </div>
+          {authError && <div className="error-message">{authError}</div>}
           {error && <div className="error-message">{error}</div>}
           <div className="form-remember">
             <div className="remember-check">

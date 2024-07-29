@@ -64,6 +64,7 @@ const loginUserHandler = async (req, res) => {
       });
     }
   } catch (error) {
+    console.error("Error logging in user:", error);
     res.status(500).json({
       success: false,
       message: "Error logging in user",
@@ -89,4 +90,4 @@ const updateUserHandler = async (req, res) => {
   }
 };
 
-module.exports = { createUserHandler, getUsersHandler, loginUserHandler, updateUserHandler };
+module.exports = { createUserHandler, getUsersHandler, loginUserHandler, updateUserHandler, checkUserExists };

@@ -12,6 +12,14 @@ const sequelize = new Sequelize(
   }
 );
 
+sequelize.authenticate()
+  .then(() => {
+    console.log('Connection to the database has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];

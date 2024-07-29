@@ -2,7 +2,6 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const cors = require('cors');
 const routes = require('./routes/index.js'); 
 
 require('./db.js');
@@ -10,21 +9,6 @@ require('./db.js');
 const server = express();
 
 server.name = 'API';
-
-const dominiosPermitidos = [process.env.FRONTEND_URL]
-
-const corsOptions = {
-    origin: function(origin, callback) {
-        if (!origin || dominiosPermitidos.indexOf(origin) !== -1) {
-            // El origen del request está permitido o es una solicitud no CORS
-            callback(null, true);
-        } else {
-            callback(new Error('No está permitido por CORS'));
-        }
-    }
-};
-
-server.use(cors(corsOptions))
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));

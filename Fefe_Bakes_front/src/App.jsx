@@ -16,7 +16,7 @@ import MainLayout from './components/MainLayout';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import PrivateRoute from './components/Private/PrivateRoute';
 import ManageCourses from './pages/Admin/ManageCourses';
-import { ManagePromotions } from './pages/Admin/ManagePromotions';
+import {ManagePromotions} from './pages/Admin/ManagePromotions';
 import {ManageRecipes} from './pages/Admin/ManageRecipes';
 
 const App = () => {

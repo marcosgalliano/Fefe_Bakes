@@ -15,8 +15,6 @@ const Catalog = () => {
         dispatch(getAllProducts());
     }, [dispatch]);
 
-    console.log("Products in component: ", products);
-
     const handleFilterChange = (e) => {
         const { name, checked } = e.target;
         dispatch(setFilters({

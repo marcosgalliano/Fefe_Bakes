@@ -1,15 +1,40 @@
-
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { login } from '../../redux/actions/authActions'; 
 import './Login.css';
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const authError = useSelector((state) => state.auth.authError);
+  const token = useSelector((state) => state.auth.token);
+
+  useEffect(() => {
+    if (token) {
+      navigate('/');
+    }
+  }, [token, navigate]);
 
   const handlePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setError("");
+
+    dispatch(login(email, password))
+      .then(() => {
+        navigate('/');
+      })
+      .catch(() => {
+        setError("Credenciales inválidas. Inténtalo de nuevo.");
+      });
   };
 
   return (
@@ -22,7 +47,7 @@ const Login = () => {
         />
         <h1>Bienvenido !</h1>
         <p className="subtitle">Por favor ingrese sus datos</p>
-        <form className="login-form">
+        <form className="login-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <input
               type="email"
@@ -66,6 +91,8 @@ const Login = () => {
               />
             </button>
           </div>
+          {authError && <div className="error-message">{authError}</div>}
+          {error && <div className="error-message">{error}</div>}
           <div className="form-remember">
             <div className="remember-check">
               <input type="checkbox" id="remember" name="remember" />

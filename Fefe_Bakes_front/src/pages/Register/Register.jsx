@@ -1,15 +1,41 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { register } from "../../redux/actions/authActions";
+import "./Register.css";
 
 const Register = () => {
-
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const authError = useSelector((state) => state.auth.authError);
+    const token = useSelector((state) => state.auth.token);
+
+    useEffect(() => {
+        if (token) {
+            navigate('/');
+        }
+    }, [token, navigate]);
 
     const handlePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setError("");
+
+        dispatch(register(name, email, password))
+            .then(() => {
+                navigate('/');
+            })
+            .catch(() => {
+                setError('Error al registrar. Inténtalo de nuevo.');
+            });
     };
 
     return (
@@ -18,10 +44,10 @@ const Register = () => {
                 <img src="../../../public/images/fefeBakesLogo.png" alt="Fefé Bakes" className="login-logo" />
                 <h1>Bienvenido !</h1>
                 <p className='subtitle'>Por favor ingrese sus datos</p>
-                <form className="login-form">
-                <div className="form-group">
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <div className="form-group">
                         <input
-                            type="name"
+                            type="text"
                             id="name"
                             name="name"
                             value={name}
@@ -62,6 +88,8 @@ const Register = () => {
                             />
                         </button>
                     </div>
+                    {authError && <div className="error-message">{authError}</div>}
+                    {error && <div className="error-message">{error}</div>}
                     <div className="form-remember">
                         <div className='remember-check'>
                             <input type="checkbox" id="remember" name="remember" />
@@ -70,7 +98,7 @@ const Register = () => {
                         <Link to='/olvide-contraseña'>¿Olvidaste tu contraseña?</Link>
                     </div>
                     <div className='login-button'>
-                        <button type="submit" className="btn">Iniciar sesión</button>
+                        <button type="submit" className="btn">Registrarse</button>
                     </div>
                     <div className='login-medium'>
                         <p> O </p>
@@ -82,17 +110,15 @@ const Register = () => {
                     </div>
                 </form>
                 <div className='register'>
-                    <p className="register-text">
-                        ¿Ya tienes una cuenta?
-                    </p>
-                    <Link to='/iniciar-sesion' className='link'>Inicia Sesión</Link>
+                    <p className='register-text'>¿No tienes una cuenta?</p>
+                    <Link to='/login'>Inicia sesión</Link>
                 </div>
             </div>
             <div className="login-right">
-                <img src="../../../public/images/loginCakeimg.avif" alt="Cake" className="login-cake-image" />
+                <img src="https://res.cloudinary.com/dasch1s5i/image/upload/loginCakeimg_peypuc.jpg" className="login-cake-image" />
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Register;

@@ -9,7 +9,7 @@ export const getAllProducts = () => {
         "https://api.devfrikipolis.com/products"
       );
       const data = apiData.data.data;
-
+      console.log(data);
       dispatch({ type: GET_ALL_PRODUCTS, payload: data });
     } catch (error) {
       return error.message;

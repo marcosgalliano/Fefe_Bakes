@@ -61,3 +61,45 @@
     cursor: pointer;
     font-size: 16px;
 }
+
+/* MENSAJE VACIO */
+
+.containerFavorites {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.iconHeart {
+    font-size: 100px;
+    color: var(--color-5);
+}
+
+.containerFavorites h3{
+    font-size: 24px;
+}
+
+.containerFavorites p{
+    font-size: 16px;
+    padding: 10px;
+    color: var(--text-color-grey);
+}
+
+.contentFavorites{
+    text-align: center;
+    padding: 10px;
+}
+
+.btnFavoritos{
+    padding: 10px;
+    background-color: var(--color-5);
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-bottom: 50px;
+}

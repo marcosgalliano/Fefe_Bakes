@@ -17,7 +17,7 @@ server.use(morgan("dev"));
 
 // Update CORS configuration
 server.use((req, res, next) => {
-  const allowedOrigins = ["http://127.0.0.1:5173", "http://localhost:3000"];
+  const allowedOrigins = ["http://127.0.0.1:5173", "http://localhost:3000", "https://fefe-bakes.vercel.app/"];
   const origin = req.headers.origin;
 
   if (allowedOrigins.includes(origin)) {

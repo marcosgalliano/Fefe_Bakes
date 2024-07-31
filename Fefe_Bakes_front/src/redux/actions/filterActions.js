@@ -1,3 +1,4 @@
+// actions/filterActions.js
 import { SET_FILTERS } from "../actionTypes";
 
 export const setFilters = (filters) => ({

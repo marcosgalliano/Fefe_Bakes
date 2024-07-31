@@ -8,12 +8,13 @@ const Register = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
+    const [surName, setSurName] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState("");
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const authError = useSelector((state) => state.auth.authError);
-    const token = useSelector((state) => state.auth.token);
+    const authError = useSelector((state) => state.authError);
+    const token = useSelector((state) => state.token);
 
     useEffect(() => {
         if (token) {
@@ -29,7 +30,7 @@ const Register = () => {
         e.preventDefault();
         setError("");
 
-        dispatch(register(name, email, password))
+        dispatch(register(name, surName, email, password))
             .then(() => {
                 navigate('/');
             })
@@ -56,6 +57,18 @@ const Register = () => {
                             required
                         />
                         <label htmlFor="name" className={name ? 'filled' : ''}>Nombre Completo</label>
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            id="surname"
+                            name="surname"
+                            value={surName}
+                            placeholder=' '
+                            onChange={(e) => setSurName(e.target.value)}
+                            required
+                        />
+                        <label htmlFor="surName" className={surName ? 'filled' : ''}>Apellido</label>
                     </div>
                     <div className="form-group">
                         <input
@@ -110,7 +123,7 @@ const Register = () => {
                     </div>
                 </form>
                 <div className='register'>
-                    <p className='register-text'>¿No tienes una cuenta?</p>
+                    <p className='register-text'>¿Ya tienes una cuenta?</p>
                     <Link to='/login'>Inicia sesión</Link>
                 </div>
             </div>

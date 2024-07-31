@@ -5,13 +5,23 @@ axios.defaults.withCredentials = true;
 export const getAllProducts = () => {
   return async function (dispatch) {
     try {
-      const apiData = await axios.get(
-        "https://api.devfrikipolis.com/products"
-      );
-      const data = apiData.data.data;
-      console.log(data);
-      dispatch({ type: GET_ALL_PRODUCTS, payload: data });
+      // Realizar ambas llamadas API
+      const [coursesResponse, recipeBooksResponse] = await Promise.all([
+        axios.get("http://localhost:3001/api/courses"),
+        axios.get("http://localhost:3001/api/recipebooks"),
+      ]);
+
+      // Extraer los datos de las respuestas
+      const coursesData = coursesResponse.data.data;
+      const recipeBooksData = recipeBooksResponse.data.data;
+
+      // Combinar los datos
+      const combinedData = [...coursesData, ...recipeBooksData];
+
+      // Despachar la acción con los datos combinados
+      dispatch({ type: GET_ALL_PRODUCTS, payload: combinedData });
     } catch (error) {
+      console.error("Error fetching products:", error);
       return error.message;
     }
   };

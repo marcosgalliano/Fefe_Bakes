@@ -1,64 +1,98 @@
-import { combineReducers } from 'redux';
-import authReducer from './authReducer';
+// reducers/rootReducer.js
 import {
-    GET_ALL_PRODUCTS,
-    SET_FILTERS,
-    GET_ALL_COURSES,
-    CREATE_COURSE,
-    UPDATE_COURSE,
-    DELETE_COURSE,
-} from './actionTypes';
+  GET_ALL_PRODUCTS,
+  SET_FILTERS,
+  GET_ALL_COURSES,
+  CREATE_COURSE,
+  UPDATE_COURSE,
+  DELETE_COURSE,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGOUT,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
+} from "./actionTypes";
 
 const initialState = {
-    products: [],
-    filters: {
-        Cursos: false,
-        Recetarios: false,
-        Promociones: false,
-    },
-    courses: [],
+  products: [],
+  filters: {
+    Cursos: false,
+    Recetarios: false,
+    Promociones: false,
+  },
+  courses: [],
+  token: null,
+  user: null,
+  authError: null,
 };
 
-const productReducer = (state = initialState.products, action) => {
-    switch (action.type) {
-        case GET_ALL_PRODUCTS:
-            return action.payload;
-        default:
-            return state;
-    }
-};
+const rootReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case GET_ALL_PRODUCTS:
+      return {
+        ...state,
+        products: action.payload,
+      };
 
-const filterReducer = (state = initialState.filters, action) => {
-    switch (action.type) {
-        case SET_FILTERS:
-            return action.payload;
-        default:
-            return state;
-    }
-};
+    case SET_FILTERS:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          ...action.payload,
+        },
+      };
 
-const courseReducer = (state = initialState.courses, action) => {
-    switch (action.type) {
-        case GET_ALL_COURSES:
-            return action.payload;
-        case CREATE_COURSE:
-            return [...state, action.payload];
-        case UPDATE_COURSE:
-            return state.map(course =>
-                course.id === action.payload.id ? action.payload : course
-            );
-        case DELETE_COURSE:
-            return state.filter(course => course.id !== action.payload);
-        default:
-            return state;
-    }
-};
+    case GET_ALL_COURSES:
+      return {
+        ...state,
+        courses: action.payload,
+      };
 
-const rootReducer = combineReducers({
-    auth: authReducer,
-    products: productReducer,
-    filters: filterReducer,
-    courses: courseReducer,
-});
+    case CREATE_COURSE:
+      return {
+        ...state,
+        courses: [...state.courses, action.payload],
+      };
+
+    case UPDATE_COURSE:
+      return {
+        ...state,
+        courses: state.courses.map((course) =>
+          course.id === action.payload.id ? action.payload : course
+        ),
+      };
+
+    case DELETE_COURSE:
+      return {
+        ...state,
+        courses: state.courses.filter((course) => course.id !== action.payload),
+      };
+
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        token: action.payload.token,
+        authError: null,
+      };
+
+    case REGISTER_FAILURE:
+      return {
+        ...state,
+        authError: action.payload,
+      };
+
+    case LOGOUT:
+      return {
+        ...state,
+        user: null,
+        token: null,
+      };
+
+    default:
+      return state;
+  }
+};
 
 export default rootReducer;

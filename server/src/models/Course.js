@@ -5,9 +5,10 @@ module.exports = (sequelize) => {
     "Course",
     {
       id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
+        allowNull: false,
       },
       title: {
         type: DataTypes.STRING,
@@ -36,6 +37,15 @@ module.exports = (sequelize) => {
       recipe_pdf_url: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      type: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return "curso";
+        },
+        set(value) {
+          throw new Error("No puedes modificar el tipo de un libro de recetas");
+        },
       },
     },
     { timestamps: false }

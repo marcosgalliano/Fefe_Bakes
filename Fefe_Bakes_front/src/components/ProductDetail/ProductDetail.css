@@ -1,3 +1,4 @@
+
 .product-detail {
     padding: 20px;
     max-width: 600px;
@@ -5,7 +6,7 @@
     background-color: var(--color-2);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 100px;
+
 }
 
 .product-detail h1 {
@@ -80,4 +81,8 @@
 
 .add-to-cart:hover {
     background-color: var(--color-hover);
+}
+
+.error-message {
+    margin-top: 100px; 
 }

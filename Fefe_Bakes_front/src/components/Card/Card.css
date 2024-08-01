@@ -61,3 +61,7 @@
 .product-button:hover {
     background-color: var(--color-hover);
 }
+
+@media (min-width: 425px) {
+
+}

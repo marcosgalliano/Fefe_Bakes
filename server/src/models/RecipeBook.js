@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
       type: {
         type: DataTypes.VIRTUAL,
         get() {
-          return "recetario";
+          return "recipebook";
         },
         set(value) {
           throw new Error("No puedes modificar el tipo de un libro de recetas");

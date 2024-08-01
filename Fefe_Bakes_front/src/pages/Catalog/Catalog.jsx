@@ -82,6 +82,8 @@ const Catalog = () => {
             description={product.description}
             price={product.price}
             link={`/detalle-producto/${product.id}`}
+            id={product.id}
+            type={product.type}
           />
         ))}
       </div>

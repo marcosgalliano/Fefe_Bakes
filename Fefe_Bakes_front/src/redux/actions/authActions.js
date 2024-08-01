@@ -11,11 +11,19 @@ export const login = (email, password) => (dispatch) => {
   return axios
     .post("http://localhost:3001/api/users/login", { email, password })
     .then((response) => {
+
       const { token, user } = response.data;
+      
+      const { password, ...userWithoutPassword } = user;
+
+      localStorage.setItem("user", JSON.stringify(userWithoutPassword));
+      console.log(userWithoutPassword);
+      
       localStorage.setItem("token", token);
+
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: { token, user },
+        payload: { token, user: userWithoutPassword },
       });
     })
     .catch((error) => {
@@ -35,12 +43,16 @@ export const register = (name, surname, email, password) => (dispatch) => {
       password,
     })
     .then((response) => {
-      const { token, user } = response.data;
+      const { token, created } = response.data;
+
+      const { password, ...userWithoutPassword } = created;
+
       localStorage.setItem("token", token);
-      console.log(response);
+      localStorage.setItem("user", JSON.stringify(userWithoutPassword));
+
       dispatch({
         type: REGISTER_SUCCESS,
-        payload: { token, user },
+        payload: { token, user: userWithoutPassword },
       });
     })
     .catch((error) => {

@@ -72,7 +72,7 @@ const rootReducer = (state = initialState, action) => {
     case REGISTER_SUCCESS:
       return {
         ...state,
-        user: action.payload,
+        user: action.payload.user,
         token: action.payload.token,
         authError: null,
       };
@@ -81,6 +81,14 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         authError: action.payload,
+      };
+
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        user: action.payload.user,
+        token: action.payload.token,
+        authError: null,
       };
 
     case LOGOUT:

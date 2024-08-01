@@ -18,8 +18,16 @@ import PrivateRoute from './components/Private/PrivateRoute';
 import ManageCourses from './pages/Admin/ManageCourses';
 import {ManagePromotions} from './pages/Admin/ManagePromotions';
 import {ManageRecipes} from './pages/Admin/ManageRecipes';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const App = () => {
+  const user = useSelector((state) => state.user) 
+
+  useEffect(() => {
+    console.log(user);
+    
+  }, [user])
   return (
     <Router>
       <Routes>

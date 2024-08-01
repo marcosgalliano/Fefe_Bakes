@@ -11,9 +11,9 @@ export const getAllProducts = () => {
         axios.get("http://localhost:3001/api/recipebooks"),
       ]);
 
-      // Extraer los datos de las respuestas
-      const coursesData = coursesResponse.data.data;
-      const recipeBooksData = recipeBooksResponse.data.data;
+      // Extraer los datos de las respuestas, manejando la posibilidad de que sean indefinidos
+      const coursesData = coursesResponse.data.data || [];
+      const recipeBooksData = recipeBooksResponse.data.data || [];
 
       // Combinar los datos
       const combinedData = [...coursesData, ...recipeBooksData];
@@ -26,3 +26,4 @@ export const getAllProducts = () => {
     }
   };
 };
+

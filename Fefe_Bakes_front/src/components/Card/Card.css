@@ -7,6 +7,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-bottom: 20px;
+    position: relative;
 }
 
 .product-image {
@@ -60,4 +61,15 @@
 
 .product-button:hover {
     background-color: var(--color-hover);
+}
+
+.product-fav-div{
+    position: absolute;
+    top: 4%;
+    right: 4%;
+}
+
+.product-fav-div ion-icon{
+    font-size: 27px;
+    color: var(--color-hover);
 }

@@ -14,7 +14,7 @@ const ProductDetail = () => {
   // Si no se encuentra el producto, muestra un mensaje de error
   if (!product) {
     return <div>Producto no encontrado</div>;
-  }
+  } 
 
   const toggleFavorite = () => {
     setIsFavorite(!isFavorite);

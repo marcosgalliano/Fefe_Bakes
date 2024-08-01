@@ -124,7 +124,7 @@ const Register = () => {
                 </form>
                 <div className='register'>
                     <p className='register-text'>¿Ya tienes una cuenta?</p>
-                    <Link to='/login'>Inicia sesión</Link>
+                    <Link to='/iniciar-sesion'>Inicia sesión</Link>
                 </div>
             </div>
             <div className="login-right">

@@ -46,35 +46,39 @@ const Home = () => {
         />
         <div className="profile-links">
           <NavLink className="logo-instagram" to="https://www.instagram.com/fefe.bakes/" target="_blank"><ion-icon name="logo-instagram"></ion-icon></NavLink>
-          <NavLink to="" target="_blank"><ion-icon name="mail-outline"></ion-icon>
+          <NavLink className="logo-mail" to="/contacto" target="_blank"><ion-icon name="mail-outline"></ion-icon>
           </NavLink>
-        </div> 
-        
+        </div>
         <h2 className="profile-name">Josefina Lopez Jallaguier</h2>
       </div>
-      <div className="about-section">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-      </div>
-      <div className="products-section">
-        <h3>Productos Destacados</h3>
-        {products.map((product) => (
-          <Card
-            key={product.id}
-            imageUrl={product.imageUrl}
-            title={product.title}
-            description={product.description}
-            price={product.price}
-            link={product.link}
-          />
-        ))}
+      <div className="content-wrapper">
+        <div className="about-section">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+        <div className="vertical-line"></div>
+        <div className="products-section">
+          <h3>Productos Destacados</h3>
+          <div className="product-row">
+            {products.slice(0, 2).map((product) => (
+              <Card
+                key={product.id}
+                imageUrl={product.imageUrl}
+                title={product.title}
+                description={product.description}
+                price={product.price}
+                link={product.link}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

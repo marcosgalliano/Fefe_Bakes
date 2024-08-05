@@ -37,29 +37,51 @@ const Header = () => {
         if (path.startsWith("/detalle-producto/")) {
             return "Detalle";
         }
-        switch (path) {
-            case "/":
-                return "Inicio";
-            case "/sobre-mi":
-                return "Quién Soy";
-            case "/contacto":
-                return "Contacto";
-            case "/catalogo":
-                return "Catálogo";
-            case "/mis-compras":
-                return "Mis Compras";
-            case "/mi-perfil":
-                return "Mi Perfil";
-            case "/favoritos":
-                return "Mis Favoritos";
-            case "/cart":
-                return "Carrito";
-            case "/iniciar-sesion":
-                return "Iniciar Sesión";
-            default:
-                return path.replace("/", ""); // Quita el slash del principio
-        }
+        const paths = {
+            "/": "Inicio",
+            "/sobre-mi": "Quién Soy",
+            "/contacto": "Contacto",
+            "/catalogo": "Catálogo",
+            "/mis-compras": "Mis Compras",
+            "/mi-perfil": "Mi Perfil",
+            "/favoritos": "Mis Favoritos",
+            "/cart": "Carrito",
+            "/iniciar-sesion": "Iniciar Sesión"
+        };
+        return paths[path] || path.replace("/", "");
     };
+
+    const renderLinks = (links) => {
+        return links.map((link) => (
+            <li key={link.to}>
+                <Link 
+                    to={link.to} 
+                    className={`link ${location.pathname === link.to ? 'active' : ''}`} 
+                    onClick={closeMenu}
+                >
+                    {link.label}
+                </Link>
+            </li>
+        ));
+    };
+    
+    const mainLinks = [
+        { to: "/", label: "Inicio" },
+        { to: "/catalogo", label: "Catálogo" },
+        { to: "/sobre-mi", label: "Quién Soy" },
+        { to: "/contacto", label: "Contacto" }
+    ];
+
+    const accountLinks = [
+        { to: "/mis-compras", label: "Mis Compras" },
+        { to: "/mi-perfil", label: "Mi Perfil" },
+        { to: "/favoritos", label: "Mis Favoritos" },
+        { to: "/cart", label: "Carrito" }
+    ];
+
+    const adminLinks = [
+        { to: "/mis-compras", label: "Administrar App" }
+    ];
 
     return (
         <header className="header">
@@ -71,82 +93,43 @@ const Header = () => {
                 />
                 <div className="menu-icon" onClick={toggleMenu}>
                     <span>{getPathName(location.pathname)}</span>
-                    {menuOpen ? (
-                        <FontAwesomeIcon icon={faTimes} className="menu-close-icon" />
-                    ) : (
-                        <FontAwesomeIcon icon={faBars} className="menu-open-icon" />
-                    )}
+                    <FontAwesomeIcon icon={menuOpen ? faTimes : faBars} className="menu-icon" />
                 </div>
+                <nav className="desktop-nav">
+                    <ul className="nav-links">{renderLinks(mainLinks)}</ul>
+                    <div className="auth-buttons">
+                        <Link to="/iniciar-sesion" className="login-btn" onClick={closeMenu}>
+                            Iniciar Sesión
+                        </Link>
+                        <Link to="/registro" className="register-btn" onClick={closeMenu}>
+                            Registrarse
+                        </Link>
+                    </div>
+                </nav>
             </div>
             <nav className={`mobile-nav ${menuOpen ? "open" : ""}`}>
                 <div className="navegation">
-                    <ul>
-                        <li>
-                            <Link to="/" className="link" onClick={closeMenu}>
-                                Inicio
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/sobre-mi" className="link" onClick={closeMenu}>
-                                Quién Soy
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/contacto" className="link" onClick={closeMenu}>
-                                Contacto
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/catalogo" className="link" onClick={closeMenu}>
-                                Catálogo
-                            </Link>
-                        </li>
-                    </ul>
+                    <ul>{renderLinks(mainLinks)}</ul>
                 </div>
                 <div className="account-section">
                     <span className="account-text">Mi cuenta</span>
                     <hr className="account-hr" />
                 </div>
                 <div className="user-info">
-                    <ul>
-                        <li>
-                            <Link to="/mis-compras" className="link" onClick={closeMenu}>
-                                Mis Compras
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/mi-perfil" className="link" onClick={closeMenu}>
-                                Mi Perfil
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/favoritos" className="link" onClick={closeMenu}>
-                                Mis Favoritos
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/cart" className="link" onClick={closeMenu}>
-                                Carrito <span className="cart-badge">2</span>
-                            </Link>
-                        </li>
-                    </ul>
+                    <ul>{renderLinks(accountLinks)}</ul>
                 </div>
                 <div className="account-section">
                     <span className="account-text">Administracion</span>
                     <hr className="account-hr" />
                 </div>
                 <div className="user-info">
-                    <ul>
-                        <li>
-                            <Link to="/mis-compras" className="link" onClick={closeMenu}>
-                                Administrar App
-                            </Link>
-                        </li>
-                    </ul>
+                    <ul>{renderLinks(adminLinks)}</ul>
                 </div>
-                <Link to="/iniciar-sesion" className="login" onClick={closeMenu}>
+                <Link to="/iniciar-sesion" className="login-btn" onClick={closeMenu}>
                     Iniciar Sesión
                 </Link>
+                <Link to="/registro" className="register-btn" onClick={closeMenu}>
+                Registrarse </Link>
             </nav>
         </header>
     );

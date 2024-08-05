@@ -5,7 +5,7 @@ const sendContactEmail = async (req, res) => {
 
     const mailOptions = {
         from: email, 
-        to: 'lukayalejo@gmail.com',
+        to: 'Fefebakes@gmail.com',
         subject: 'Nuevo mensaje de contacto',
         text: `Nombre: ${name}\nEmail: ${email}\nTeléfono: ${phone}\nMensaje: ${message}`,
     };

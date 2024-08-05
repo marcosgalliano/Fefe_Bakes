@@ -23,6 +23,10 @@
     margin-top: 20px;
 }
 
+.p-contact{
+    margin-bottom: 20px;
+}
+
 .form-group {
     position: relative;
     margin-bottom: 20px;
@@ -89,7 +93,20 @@
     background-color: var(--color-hover);
 }
 
-.alert{
-    background-color: red;
-    color: whitesmoke;
+.alert {
+    top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #f44336; 
+    text-align: center;
+}
+
+.alert.success {
+    background-color: #4CAF50; 
+}
+
+.alert.error {
+    background-color: #f44336; 
 }

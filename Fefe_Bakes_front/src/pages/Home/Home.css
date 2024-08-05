@@ -43,6 +43,10 @@
     margin-left: auto;
 }
 
+.profile-links .logo-instagram {
+    color: var(--color-2);
+}
+
 .profile-name {
     font-size: 18px;
     margin-top: 10px;

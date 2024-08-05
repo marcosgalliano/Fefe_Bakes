@@ -6,46 +6,55 @@ const Contact = () => {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [message, setMessage] = useState("");
+    const [alert, setAlert] = useState({ type: '', message: '' });
 
-    
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (name && email && phone && message) {
-            try {                            // Cambiarlo por nuestro endpoint
-                const response = await fetch('https://api.emailservice.com/send', {
+            try {
+                const response = await fetch('http://localhost:3001/api/contact/send', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        to: 'usuario123@gmail.com', // Poner el email de Fefe
-                        subject: 'Nuevo mensaje de contacto',
-                        text: `Nombre: ${name}\nEmail: ${email}\nTeléfono: ${phone}\nMensaje: ${message}`,
+                        name,
+                        email,
+                        phone,
+                        message,
                     }),
                 });
 
-                if (response.ok) {
-                    alert('Mensaje enviado con éxito');
+                if (response.status === 200) {
+                    setAlert({ type: 'success', message: 'Mensaje enviado con éxito' });
                     setName("");
                     setEmail("");
                     setPhone("");
                     setMessage("");
                 } else {
-                    alert('Error al enviar el mensaje');
+                    setAlert({ type: 'error', message: 'Error al enviar el mensaje' });
                 }
             } catch (error) {
                 console.error('Error:', error);
-                alert('Error al enviar el mensaje');
+                setAlert({ type: 'error', message: 'Error al enviar el mensaje' });
             }
         } else {
-            console.log('Mostrar la Alerta Aca');
+        setAlert({ type: 'error', message: 'Por favor completa todos los campos' });
         }
+        setTimeout(() => {
+            setAlert({ type: '', message: '' });
+        }, 3000);
     };
 
     return (
         <div className="contact-form-container">
             <h1>Contacto</h1>
-            <p className='p-contact'> ¡Enviame un mensaje! </p>
+            <p className='p-contact'>¡Enviame un mensaje!</p>
+            {alert.message && (
+                <div className={`alert ${alert.type}`}>
+                    {alert.message}
+                </div>
+            )}
             <form className="contact-form" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <input

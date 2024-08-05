@@ -1,4 +1,4 @@
-// import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Home.css";
 import Card from "../../components/Card/Card";
 
@@ -45,9 +45,11 @@ const Home = () => {
           className="profile-image"
         />
         <div className="profile-links">
-          <ion-icon name="logo-instagram"></ion-icon>
-          <ion-icon name="mail-outline"></ion-icon>
-        </div>
+          <NavLink className="logo-instagram" to="https://www.instagram.com/fefe.bakes/" target="_blank"><ion-icon name="logo-instagram"></ion-icon></NavLink>
+          <NavLink to="" target="_blank"><ion-icon name="mail-outline"></ion-icon>
+          </NavLink>
+        </div> 
+        
         <h2 className="profile-name">Josefina Lopez Jallaguier</h2>
       </div>
       <div className="about-section">

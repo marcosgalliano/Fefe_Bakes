@@ -1,6 +1,6 @@
-import { NavLink } from "react-router-dom";
-import "./Home.css";
+import { Link } from "react-router-dom";
 import Card from "../../components/Card/Card";
+import "./Home.css";
 
 const Home = () => {
   const products = [
@@ -45,9 +45,9 @@ const Home = () => {
           className="profile-image"
         />
         <div className="profile-links">
-          <NavLink className="logo-instagram" to="https://www.instagram.com/fefe.bakes/" target="_blank"><ion-icon name="logo-instagram"></ion-icon></NavLink>
-          <NavLink className="logo-mail" to="/contacto" target="_blank"><ion-icon name="mail-outline"></ion-icon>
-          </NavLink>
+          <Link className="logo-instagram" to="https://www.instagram.com/fefe.bakes/" target="_blank"><ion-icon name="logo-instagram"></ion-icon></Link>
+          <Link className="logo-mail" to="/contacto"><ion-icon name="mail-outline"></ion-icon>
+          </Link>
         </div>
         <h2 className="profile-name">Josefina Lopez Jallaguier</h2>
       </div>
@@ -64,7 +64,7 @@ const Home = () => {
           </p>
         </div>
         <div className="vertical-line"></div>
-        <div className="products-section">
+        <div className="products-section-home">
           <h3>Productos Destacados</h3>
           <div className="product-row">
             {products.slice(0, 2).map((product) => (

@@ -7,12 +7,13 @@
 }
 
 .icon-heart {
+    margin-top: 50px;
     font-size: 100px;
     color: var(--color-5);
 }
 
 .container-favorites h3{
-    font-size: 24px;
+    font-size: 22px;
 }
 
 .container-favorites p{
@@ -24,6 +25,11 @@
 .content-favorites{
     text-align: center;
     padding: 10px;
+    margin-bottom: 20px;
+}
+
+.p-favorites{
+    margin-bottom: 20px;
 }
 
 .btn-favoritos{
@@ -36,4 +42,11 @@
     cursor: pointer;
     text-decoration: none;
     margin-bottom: 50px;
+}
+
+.favorites-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }

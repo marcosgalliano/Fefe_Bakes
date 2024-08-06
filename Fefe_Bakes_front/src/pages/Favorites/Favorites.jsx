@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import "./Favorites.css";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Card from "../../components/Card/Card";
+import "./Favorites.css";
 
 const Favorites = () => {
   const user = useSelector((state) => state.user);
@@ -44,15 +44,13 @@ const Favorites = () => {
       <div className="content-favorites">
         {favoriteProducts.length === 0 ? (
           <>
-            <h3> Aún no hay nada </h3>
-            <p>
-              {" "}
-              Selecciona el botón debajo para Buscar una receta y agregar un
-              favorito{" "}
+            <h3>Aún no hay nada</h3>
+            <p className="p-favorites">
+              Selecciona el botón debajo para buscar una receta o curso y agregar un
+              favorito
             </p>
             <Link to="/catalogo" className="btn-favoritos">
-              {" "}
-              Ver Recetas{" "}
+              Ver Catálogo
             </Link>
           </>
         ) : (
@@ -65,8 +63,7 @@ const Favorites = () => {
                 description={product.description}
                 price={product.price}
                 link={`/detalle-producto/${product.id}`}
-                id={product.id}
-                type={product.type}
+                // type={product.type}
               />
             ))}
           </div>

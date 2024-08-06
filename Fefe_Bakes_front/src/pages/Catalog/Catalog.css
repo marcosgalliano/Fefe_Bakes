@@ -1,12 +1,11 @@
 .container {
-    margin-top: 100px;
+    margin-top: 120px;
     text-align: center;
 }
 
 .container h3 {
     color: var(--color-5);
     font-size: 25px;
-    margin-top: 20px;
     margin-bottom: 10px;
 }
 
@@ -103,4 +102,40 @@
 
 .product-button:hover {
     background-color: var(--color-hover);
+}
+
+@media (min-width: 1024px){
+    .container h3{
+        font-size: 30px;
+    }
+    .filter{
+        justify-content: start;
+        margin-left: 50px;
+        gap: 20px;
+    }
+    .filter-item{
+        font-size: 14px;
+    }
+    .hr-catalog{
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+
+@media (min-width: 1440px){
+    .container h3{
+        font-size: 35px;
+    }
+    .filter{
+        justify-content: start;
+        margin-left: 100px;
+        gap: 20px;
+    }
+    .filter-item{
+        font-size: 16px;
+    }
+    .hr-catalog{
+        margin-left: 100px;
+        margin-right: 100px;
+    }
 }

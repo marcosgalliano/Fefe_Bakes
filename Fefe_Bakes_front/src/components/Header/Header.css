@@ -212,7 +212,7 @@
 }
 
 .register-btn:hover{
-    background-color: var(--color-hover);
+    background-color: #a7a5a3;
     font-weight: bold;
 }
 

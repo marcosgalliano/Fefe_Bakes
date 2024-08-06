@@ -7,7 +7,6 @@ const UserProfile = () => {
         name: "Nombre Completo",
         email: "user@gmail.com",
         phone: "+51 12345678",
-        address: "Calle 123, Buenos Aires, Argentina.",
         profileImage: "https://res.cloudinary.com/dasch1s5i/image/upload/v1721069445/premium_photo-1683121366070-5ceb7e007a97_xgp17a.avif"
     });
 
@@ -41,7 +40,8 @@ const UserProfile = () => {
             </div>
             <div className="profile-card">
                 <div className='profile-card-flex'> 
-                    <img src={userInfo.profileImage} alt="User" className="profile-image" />
+                <img src='https://res.cloudinary.com/dasch1s5i/image/upload/v1721069445/premium_photo-1683121366070-5ceb7e007a97_xgp17a.avif'></img>
+                    {/* <img src={userInfo.profileImage} alt="User" className="profile-image" /> */}
                     {isEditing && (
                         <>
                             <ion-icon name="cloud-upload-outline" class="upload-icon" onClick={() => document.getElementById('fileInput').click()}></ion-icon>
@@ -80,13 +80,6 @@ const UserProfile = () => {
                                 onChange={handleInputChange} 
                                 className="edit-input"
                             />
-                            <input 
-                                type="text" 
-                                name="address" 
-                                value={userInfo.address} 
-                                onChange={handleInputChange} 
-                                className="edit-input"
-                            />
                         </>
                     ) : (
                         <>
@@ -94,15 +87,13 @@ const UserProfile = () => {
                             <p>{userInfo.email}</p>
                             <hr className='hr-profile' />
                             <p>{userInfo.phone}</p>
-                            <hr className='hr-profile' />
-                            <p>{userInfo.address}</p>
                         </>
                     )}
                 </div>
             </div>
             <div className="menu">
                 <div className="menu-item">
-                    <span>Pedidos</span>
+                    <span>Mis compras</span>
                     <ion-icon name="chevron-forward-outline"></ion-icon>
                 </div>
                 <div className="menu-item">
@@ -110,15 +101,10 @@ const UserProfile = () => {
                     <ion-icon name="chevron-forward-outline"></ion-icon>
                 </div>
                 <div className="menu-item">
-                    <span>Preguntas Frecuentes</span>
-                    <ion-icon name="chevron-forward-outline"></ion-icon>
-                </div>
-                <div className="menu-item">
-                    <span>Ayuda</span>
+                    <span>Mis Favoritos</span>
                     <ion-icon name="chevron-forward-outline"></ion-icon>
                 </div>
             </div>
-            <button className="update-button">Actualizar</button>
         </div>
     );
 };

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { getAllProducts } from "../../redux/actions/getAllProducts";
 import { setFilters } from "../../redux/actions/filterActions";
 import Card from "../../components/Card/Card";
@@ -72,7 +72,7 @@ const Catalog = () => {
           />
         </label>
       </div>
-      <hr />
+      <hr className="hr-catalog"/>
       <div className="products-section">
         {filteredProducts.map((product) => (
           <Card

@@ -7,6 +7,8 @@ const recipesRoutes = require("./recipesRoute");
 const passRoutes = require("./resetPassword");
 const favoriteRoutes = require("./favoriteRoutes");
 const paymentRoutes = require("./paymentRoutes");
+const favoriteRoutes = require("./favoriteRoutes")
+const contactRoutes = require('./contactRoutes');
 
 const router = Router();
 
@@ -19,5 +21,6 @@ router.use("/recipebooks", recipesRoutes);
 router.use("/password", passRoutes);
 router.use("/favorites", favoriteRoutes);
 router.use("/payment", paymentRoutes);
+router.use('/contacto', contactRoutes);
 
 module.exports = router;

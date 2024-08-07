@@ -1,33 +1,48 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home/Home';
-import Login from './pages/Login/Login';
-import Register from './pages/Register/Register';
-import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
-import Favorites from './pages/Favorites/Favorites';
-import Courses from './pages/Courses/Courses';
-import Catalog from './pages/Catalog/Catalog';
-import ProductDetail from './components/ProductDetail/ProductDetail';
-import UserProfile from './pages/UserProfile/UserProfile';
-import Cart from './pages/Cart/Cart';
-import Contact from './pages/Contact/Contact';
-import MainLayout from './components/MainLayout';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
+import Favorites from "./pages/Favorites/Favorites";
+import Courses from "./pages/Courses/Courses";
+import Catalog from "./pages/Catalog/Catalog";
+import ProductDetail from "./components/ProductDetail/ProductDetail";
+import UserProfile from "./pages/UserProfile/UserProfile";
+import Cart from "./pages/Cart/Cart";
+import Contact from "./pages/Contact/Contact";
+import MainLayout from "./components/MainLayout";
+import { getAllProducts } from "./redux/actions/getAllProducts";
 
-//Admim
-import AdminDashboard from './pages/Admin/AdminDashboard';
-import PrivateRoute from './components/Private/PrivateRoute';
-import ManageCourses from './pages/Admin/ManageCourses';
-import {ManagePromotions} from './pages/Admin/ManagePromotions';
-import {ManageRecipes} from './pages/Admin/ManageRecipes';
-import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
+// Admin
+import AdminDashboard from "./pages/Admin/AdminDashboard";
+import PrivateRoute from "./components/Private/PrivateRoute";
+import ManageCourses from "./pages/Admin/ManageCourses";
+import { ManagePromotions } from "./pages/Admin/ManagePromotions";
+import { ManageRecipes } from "./pages/Admin/ManageRecipes";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { setId } from "./redux/actions/authActions";
 
 const App = () => {
-  const user = useSelector((state) => state.user) 
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(user);
-    
-  }, [user])
+    if (!user || !user.id) {
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        const parsedUser = JSON.parse(storedUser);
+        if (parsedUser.id) {
+          dispatch(setId(parsedUser.id));
+        }
+      }
+    }
+  }, [user, dispatch]);
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, [dispatch]);
+
   return (
     <Router>
       <Routes>
@@ -46,10 +61,38 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
         </Route>
         {/* Rutas protegidas */}
-        <Route path="/admin" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} /> 
-        <Route path="/admin/cursos" element={<PrivateRoute><ManageCourses /></PrivateRoute>} />
-        <Route path="/admin/recetarios" element={<PrivateRoute><ManageRecipes /></PrivateRoute>} />
-        <Route path="/admin/promociones" element={<PrivateRoute><ManagePromotions /></PrivateRoute>} />
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute>
+              <AdminDashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/cursos"
+          element={
+            <PrivateRoute>
+              <ManageCourses />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/recetarios"
+          element={
+            <PrivateRoute>
+              <ManageRecipes />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/promociones"
+          element={
+            <PrivateRoute>
+              <ManagePromotions />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </Router>
   );

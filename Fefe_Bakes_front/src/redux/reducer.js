@@ -11,6 +11,7 @@ import {
   LOGOUT,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
+  SET_ID,
 } from "./actionTypes";
 
 const initialState = {
@@ -96,6 +97,15 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         user: null,
         token: null,
+      };
+
+    case SET_ID:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          id: action.payload,
+        },
       };
 
     default:

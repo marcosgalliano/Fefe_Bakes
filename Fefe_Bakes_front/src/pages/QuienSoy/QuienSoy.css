@@ -1,0 +1,9 @@
+.container-sobre-mi{
+    margin-top: 120px;
+    min-height: 100vh;
+}
+
+.container-sobre-mi h2{
+    text-align: center;
+    color: var(--color-5);
+}

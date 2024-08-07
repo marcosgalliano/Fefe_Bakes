@@ -257,10 +257,13 @@
     }
 
     .about-section {
-
         margin-left: 50px;
         margin-top: 85px;
         max-width: 350px;
+    }
+
+    .vertical-line{
+        margin-left: 50px;
     }
 
     .products-section-home {

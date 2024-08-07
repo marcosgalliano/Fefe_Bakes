@@ -1,7 +1,8 @@
 // Cart.js
-import React, { useState } from "react";
-import CartCard from "../../components/CartCard/CartCard";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import CartCard from "../../components/CartCard/CartCard";
+
 import style from "./Cart.module.css";
 
 const Cart = () => {

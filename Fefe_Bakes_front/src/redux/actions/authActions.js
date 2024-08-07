@@ -73,5 +73,6 @@ export const setId = (id) => (dispatch) => {
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem("token");
+  localStorage.removeItem("user");
   dispatch({ type: LOGOUT });
 };

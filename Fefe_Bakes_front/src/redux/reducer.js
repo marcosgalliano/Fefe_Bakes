@@ -22,8 +22,8 @@ const initialState = {
     Promociones: false,
   },
   courses: [],
-  token: localStorage.getItem("token") || null,
-  user: JSON.parse(localStorage.getItem("user")) || null,
+  token: null,
+  user: null,
   authError: null,
 };
 
@@ -45,6 +45,7 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case GET_ALL_COURSES:
+      console.log(action.payload); // Verifica si el payload es un array
       return {
         ...state,
         courses: action.payload,

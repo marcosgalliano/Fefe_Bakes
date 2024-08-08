@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 const PrivateRoute = ({ children, adminOnly = false }) => {
-    const { token, user } = useSelector((state) => state);
+    const token = useSelector((state) => state.token);
+    const user = useSelector((state) => state.user);
 
     if (!token) {
         return <Navigate to="/iniciar-sesion" />;

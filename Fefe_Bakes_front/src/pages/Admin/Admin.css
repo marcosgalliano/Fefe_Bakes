@@ -1,0 +1,216 @@
+.container-admin{
+    min-height: 100vh;
+    margin-top: 120px;
+}
+
+.container-admin h1{
+    text-align: center;
+    margin-top: 20px;
+    color: var(--color-5);
+}
+
+.container-admin ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 50px;
+    margin-top: 50px;
+}
+
+.btn-admin{
+    background-color: var(--color-4);
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 2px 2px var(--color-5);
+}
+
+.btn-admin:hover{
+    background-color: var(--color-5);
+}
+
+.container-cursos {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.container-cursos h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-curso {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+
+.form-curso-admin h2 {
+    margin-bottom: 20px;
+}
+
+.form-group-admin {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.form-group-admin input,
+.form-group-admin textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--color-4);
+    border-radius: 5px;
+}
+
+.form-group-admin input::placeholder,
+.form-group-admin textarea::placeholder {
+    color: black;
+}
+
+.form-group-admin input:focus::placeholder,
+.form-group-admin textarea:focus::placeholder {
+    color: black;
+}
+
+.form-group-admin input:not(:placeholder-shown),
+.form-group-admin textarea:not(:placeholder-shown) {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.form-group-admin input:not(:placeholder-shown) + label,
+.form-group-admin textarea:not(:placeholder-shown) + label {
+    top: 0;
+    font-size: 12px;
+    color: black;
+}
+
+.form-group-admin label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 16px;
+    color: black;
+    transition: all 0.3s ease;
+}
+
+.form-group-admin input:focus + label,
+.form-group-admin textarea:focus + label {
+    top: 0;
+    font-size: 12px;
+    color: black;
+}
+
+.btn-submit {
+    background-color: var(--color-5);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: var(--color-5);
+}
+
+.course-list {
+    list-style: none;
+    padding: 0;
+}
+
+.course-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.course-details {
+    max-width: 70%;
+}
+
+.course-details img {
+    max-width: 100px;
+    border-radius: 10px;
+}
+
+.course-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.list-courses-h2{
+    text-align: center;
+
+}
+
+.product-image-course {
+    width: 240px;
+    height: 150px;
+    border-radius: 10px;
+}
+
+.product-info-course {
+    text-align: left;
+}
+
+.product-title-course {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.product-description-course {
+    font-size: 14px;
+    color: #666;
+}
+
+.product-price-course {
+    font-size: 16px;
+    color: black;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.card-flex-course{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.btn-edit-course{
+    background-color: var(--color-5);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    height: 35px;
+}
+
+.btn-delete-course{
+    background-color: rgb(197, 36, 36);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    height: 35px;
+}

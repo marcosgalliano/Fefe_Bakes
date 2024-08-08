@@ -1,10 +1,10 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-// import { Link } from "react-router-dom";
-import { getAllProducts } from "../../redux/actions/getAllProducts";
-import { setFilters } from "../../redux/actions/filterActions";
-import Card from "../../components/Card/Card";
-import "./Catalog.css";
+// src/pages/Catalog/Catalog.jsx
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllProducts } from '../../redux/actions/getAllProducts';
+import { setFilters } from '../../redux/actions/filterActions';
+import Card from '../../components/Card/Card';
+import './Catalog.css';
 
 const Catalog = () => {
   const dispatch = useDispatch();
@@ -17,12 +17,7 @@ const Catalog = () => {
 
   const handleFilterChange = (e) => {
     const { name, checked } = e.target;
-    dispatch(
-      setFilters({
-        ...filters,
-        [name]: checked,
-      })
-    );
+    dispatch(setFilters({ ...filters, [name]: checked }));
   };
 
   const filteredProducts = products.filter((product) => {
@@ -77,12 +72,12 @@ const Catalog = () => {
         {filteredProducts.map((product) => (
           <Card
             key={product.id}
+            id={product.id}
             imageUrl={product.images[0]?.url}
             title={product.title}
             description={product.description}
             price={product.price}
             link={`/detalle-producto/${product.id}`}
-            id={product.id}
             type={product.type}
           />
         ))}

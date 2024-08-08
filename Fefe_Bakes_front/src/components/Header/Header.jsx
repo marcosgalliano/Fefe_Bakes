@@ -2,18 +2,11 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { useSelector, useDispatch } from "react-redux";
-import {logout} from "../../redux/actions/authActions"; // Asegúrate de importar la acción de logout
 import "./Header.css";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const location = useLocation();
-    const dispatch = useDispatch();
-    
-    const { token } = useSelector((state) => ({
-        token: state.token
-    }));
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -40,10 +33,10 @@ const Header = () => {
         closeMenu();
     }, [location]);
 
-    const handleLogout = () => {
-        dispatch(logout());
-        closeMenu();
-    };
+    // const handleLogout = () => {
+    //     dispatch(logout());
+    //     closeMenu();
+    // };
 
     const getPathName = (path) => {
         if (path.startsWith("/detalle-producto/")) {
@@ -110,20 +103,12 @@ const Header = () => {
                 <nav className="desktop-nav">
                     <ul className="nav-links">{renderLinks(mainLinks)}</ul>
                     <div className="auth-buttons">
-                        {token ? (
-                            <button className="logout-btn" onClick={handleLogout}>
-                                Cerrar Sesión
-                            </button>
-                        ) : (
-                            <>
                                 <Link to="/iniciar-sesion" className="login-btn" onClick={closeMenu}>
                                     Iniciar Sesión
                                 </Link>
                                 <Link to="/registro" className="register-btn" onClick={closeMenu}>
                                     Registrarse
                                 </Link>
-                            </>
-                        )}
                     </div>
                 </nav>
             </div>
@@ -145,20 +130,12 @@ const Header = () => {
                 <div className="user-info">
                     <ul>{renderLinks(adminLinks)}</ul>
                 </div>
-                {token ? (
-                    <button className="logout-btn" onClick={handleLogout}>
-                        Cerrar Sesión
-                    </button>
-                ) : (
-                    <>
                         <Link to="/iniciar-sesion" className="login-btn" onClick={closeMenu}>
                             Iniciar Sesión
                         </Link>
                         <Link to="/registro" className="register-btn" onClick={closeMenu}>
                             Registrarse
                         </Link>
-                    </>
-                )}
             </nav>
         </header>
     );

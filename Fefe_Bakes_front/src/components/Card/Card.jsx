@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Card.css";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { addToCart } from "../../utils/cartUtils";
 
 const Card = ({ imageUrl, title, description, price, link, id, type }) => {
   const user = useSelector((state) => state.user);
@@ -67,6 +68,12 @@ const Card = ({ imageUrl, title, description, price, link, id, type }) => {
     }
   };
 
+  const handleAddToCart = () => {
+    const product = { id, imageUrl, title, description, price, type };
+    addToCart(product);
+    alert("Producto agregado al carrito");
+  };
+
   return (
     <div className="product-card">
       <img src={imageUrl} alt={title} className="product-image" />
@@ -82,11 +89,15 @@ const Card = ({ imageUrl, title, description, price, link, id, type }) => {
       <div className="product-info">
         <h4 className="product-title">{title}</h4>
         <p className="product-description">{description}</p>
-        <div className="card-flex">
-          <p className="product-price">${price}</p>
+        <p className="product-price">${price}</p>
+        <div className="card-flex-catalog">
           <Link to={link}>
-            <button className="product-button">Ver Producto</button>
+            <button className="product-button-see">
+            Ver Producto</button>
           </Link>
+          <button className="product-button-add" onClick={handleAddToCart}>
+            Agregar al carrito 
+          </button>
         </div>
       </div>
     </div>

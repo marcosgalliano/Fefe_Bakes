@@ -11,7 +11,7 @@ import {
 export const getAllCourses = () => {
   return async (dispatch) => {
     try {
-      const response = await axiosInstance.get("/api/courses/getall"); // Poner la URL de la API correcta
+      const response = await axiosInstance.get("/courses"); // Poner la URL de la API correcta
       dispatch({ type: GET_ALL_COURSES, payload: response.data });
     } catch (error) {
       console.error("Error al obtener los cursos:", error);
@@ -24,7 +24,7 @@ export const createCourse = (courseData) => {
   return async (dispatch) => {
     try {
       const response = await axiosInstance.post(
-        "/api/courses/create",
+        "/courses/create",
         courseData
       ); // Poner la URL de la API correcta
       dispatch({ type: CREATE_COURSE, payload: response.data });
@@ -39,7 +39,7 @@ export const updateCourse = (courseId, courseData) => {
   return async (dispatch) => {
     try {
       const response = await axiosInstance.put(
-        `/api/courses/${courseId}`,
+        `/courses/${courseId}`,
         courseData
       ); // Poner la URL de la API correcta
       dispatch({ type: UPDATE_COURSE, payload: response.data });
@@ -53,7 +53,7 @@ export const updateCourse = (courseId, courseData) => {
 export const deleteCourse = (courseId) => {
   return async (dispatch) => {
     try {
-      await axiosInstance.delete(`/api/courses/${courseId}`); // Poner la URL de la API correcta
+      await axiosInstance.delete(`/courses/${courseId}`); // Poner la URL de la API correcta
       dispatch({ type: DELETE_COURSE, payload: courseId });
     } catch (error) {
       console.error("Error al eliminar el curso:", error);

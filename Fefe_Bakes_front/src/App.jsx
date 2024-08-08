@@ -69,7 +69,7 @@ const App = () => {
         </Route>
         {/* Rutas protegidas */}
         <Route
-          path="/admin"
+          exact path="/admin"
           element={
             <PrivateRoute>
               <AdminDashboard />

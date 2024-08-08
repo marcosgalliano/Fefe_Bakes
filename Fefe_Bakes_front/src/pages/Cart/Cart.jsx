@@ -1,7 +1,7 @@
-// Cart.js
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CartCard from "../../components/CartCard/CartCard";
+import { getCart, removeFromCart, clearCart } from "../../utils/cartUtils"; // Importar funciones de ayuda
 
 import style from "./Cart.module.css";
 
@@ -10,31 +10,15 @@ const Cart = () => {
     locale: "es-AR",
   });
 
-  const initialProducts = [
-    {
-      id: 1,
-      imageUrl:
-        "https://res.cloudinary.com/dasch1s5i/image/upload/CakeLogin_zoqgnb.jpg",
-      title: "Curso Pasteleria",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-      price: 14000,
-    },
-    {
-      id: 2,
-      imageUrl:
-        "https://res.cloudinary.com/dasch1s5i/image/upload/CakeLogin_zoqgnb.jpg",
-      title: "Curso Pasteleria",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-      price: 17000,
-    },
-  ];
+  const [products, setProducts] = useState([]);
 
-  const [products, setProducts] = useState(initialProducts);
+  useEffect(() => {
+    setProducts(getCart()); // Cargar productos del carrito al montar el componente
+  }, []);
 
   const handleRemove = (id) => {
-    setProducts(products.filter((product) => product.id !== id));
+    removeFromCart(id);
+    setProducts(getCart()); // Actualizar estado después de remover
   };
 
   const totalPrice = products.reduce(
@@ -46,8 +30,6 @@ const Cart = () => {
     const bricksBuilder = mp.bricks();
 
     const renderComp = async () => {
-      /* if (window.checkoutButton) window.checkoutButton.unmount(); */
-
       await bricksBuilder.create("wallet", "wallet_container", {
         initialization: {
           preferenceId: pId,
@@ -130,7 +112,7 @@ const Cart = () => {
       {products.length > 0 && (
         <div className={style.totalSection}>
           <p>Total a pagar: ${totalPrice}</p>
-          <button className={style.buyButton} onClick={() => handleCheckout()}>Go to checkout</button>
+          <button className={style.buyButton} onClick={handleCheckout}>Go to checkout</button>
           <div id="wallet_container"></div>
         </div>
       )}

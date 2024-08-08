@@ -1,55 +1,36 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-    getAllCourses,
-    createCourse,
-    updateCourse,
-    deleteCourse,
-} from '../../redux/actions/courseActions';
+import { getAllCourses, deleteCourse } from '../../redux/actions/courseActions';
+import { Link } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import './Admin.css';
 
 const ManageCourses = () => {
     const dispatch = useDispatch();
-    const coursesData = useSelector((state) => state.courses || []); // Evita errores si courses es undefined
-    const courses = coursesData.data || []; // Accede a los cursos dentro de `data`
+    const courses = useSelector((state) => state.courses?.data || []);
 
-    const [courseData, setCourseData] = useState({
-        id: '',
-        name: '',
-        description: '',
-        price: '',
-        image: null,
-    });
+    // Estado para controlar la vista de cursos (todos o destacados)
+    const [showFeatured, setShowFeatured] = useState(false);
+    const [filteredCourses, setFilteredCourses] = useState([]);
 
     useEffect(() => {
         dispatch(getAllCourses());
     }, [dispatch]);
 
-    const handleCreateCourse = (e) => {
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append('name', courseData.name);
-        formData.append('description', courseData.description);
-        formData.append('price', courseData.price);
-        if (courseData.image) {
-            formData.append('image', courseData.image);
+    // Solo actualizar `filteredCourses` cuando los cursos o `showFeatured` cambien
+    useEffect(() => {
+        if (courses.length > 0) {
+            const filtered = showFeatured ? courses.filter(course => course.isFeatured) : courses;
+            setFilteredCourses(filtered);
         }
-        dispatch(createCourse(formData));
-        setCourseData({ id: '', name: '', description: '', price: '', image: null });
-    };
+    }, [courses, showFeatured]);
 
-    const handleUpdateCourse = (e) => {
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append('name', courseData.name);
-        formData.append('description', courseData.description);
-        formData.append('price', courseData.price);
-        if (courseData.image) {
-            formData.append('image', courseData.image);
-        }
-        dispatch(updateCourse(courseData.id, formData));
-        setCourseData({ id: '', name: '', description: '', price: '', image: null });
+    const toggleFeatured = (courseId) => {
+        setFilteredCourses((prevCourses) =>
+            prevCourses.map((course) =>
+                course.id === courseId ? { ...course, isFeatured: !course.isFeatured } : course
+            )
+        );
     };
 
     const handleDeleteCourse = (courseId) => {
@@ -58,105 +39,47 @@ const ManageCourses = () => {
         }
     };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setCourseData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
-
-    const handleFileChange = (e) => {
-        setCourseData((prevData) => ({
-            ...prevData,
-            image: e.target.files[0],
-        }));
-    };
-
-    const handleEditCourse = (course) => {
-        setCourseData({
-            id: course.id,
-            name: course.name,
-            description: course.description,
-            price: course.price,
-            image: course.image,
-        });
-    };
-
-    console.log(courses); // Verifica la estructura de courses
+    const handleShowFeatured = () => setShowFeatured(true);
+    const handleShowAll = () => setShowFeatured(false);
 
     return (
-        <> 
-        <Header />
-        <div className='container-cursos'>
-            <h1>Administrar Cursos</h1>
+        <>
+            <Header />
+            <div className="container-cursos">
+                <h1>Administrar Cursos</h1>
+                <Link to="/admin/cursos/crear">Crear</Link>
+                <div className="admin-utils">
+                    <h4 onClick={handleShowFeatured} className={showFeatured ? 'active' : ''}>Destacados</h4>
+                    <h4 onClick={handleShowAll} className={!showFeatured ? 'active' : ''}>Productos</h4>
+                    <h4>Estadísticas</h4>
+                </div>
 
-            <form className='form-curso' onSubmit={courseData.id ? handleUpdateCourse : handleCreateCourse}>
-                <h2>{courseData.id ? 'Actualizar Curso' : 'Crear Curso'}</h2>
-                <div className='form-group-admin'>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={courseData.name}
-                        onChange={handleChange}
-                        required
-                        placeholder='Nombre del Curso'
-                    />
-                </div>
-                <div className='form-group-admin'>
-                    <textarea
-                        id="description"
-                        name="description"
-                        value={courseData.description}
-                        onChange={handleChange}
-                        required
-                        placeholder='Descripción'
-                    />
-                </div>
-                <div className='form-group-admin'>
-                    <input
-                        type="text"
-                        id="price"
-                        name="price"
-                        value={courseData.price}
-                        onChange={handleChange}
-                        required
-                        placeholder='Precio'
-                    />
-                </div>
-                <div className='form-group-admin'>
-                    <p> Agregar una imagen de portada</p>
-                    <input
-                        type="file"
-                        id="image"
-                        name="image"
-                        onChange={handleFileChange}
-                    />
-                </div>
-                <button type="submit" className='btn-submit'>{courseData.id ? 'Actualizar Curso' : 'Crear Curso'}</button>
-            </form>
-
-            <h2 className='list-courses-h2'>Lista de Cursos</h2>
-            <div>
-                {Array.isArray(courses) && courses.length > 0 ? (
-                    courses.map(course => (
-                        <div className='product-card' key={course.id}>
-                            <p className='product-image-course'>{course.image} </p>
-                            <h4 className='product-title-course'>{course.title}</h4>
-                            <p className='product-description-course'>{course.description}</p>
-                            <p className='product-price-course'>{course.price}</p>
-                            <div className="card-flex-course">
-                                <button onClick={handleEditCourse} className="btn-edit-course">Editar</button>
-                                <button onClick={handleDeleteCourse} className="btn-delete-course">Eliminar</button>
+                <h2 className="list-courses-h2">Lista de Cursos</h2>
+                <div>
+                    {filteredCourses.length > 0 ? (
+                        filteredCourses.map((course) => (
+                            <div className="product-card" key={course.id}>
+                                <p className="product-image-course">{course.image}</p>
+                                <h4 className="product-title-course">{course.title}</h4>
+                                <p className="product-description-course">{course.description}</p>
+                                <p className="product-price-course">{course.price}</p>
+                                <div className="card-flex-course">
+                                    <ion-icon
+                                        name={course.isFeatured ? 'star' : 'star-outline'}
+                                        className={`favorite-icon ${course.isFeatured ? 'filled' : ''}`}
+                                        onClick={() => toggleFeatured(course.id)}
+                                    ></ion-icon>
+                                    <button onClick={() => handleDeleteCourse(course.id)} className="btn-delete-course">
+                                        Eliminar
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    ))
-                ) : (
-                    <p>No se encontraron cursos</p>
-                )}
+                        ))
+                    ) : (
+                        <p>No se encontraron cursos</p>
+                    )}
+                </div>
             </div>
-        </div>
         </>
     );
 };

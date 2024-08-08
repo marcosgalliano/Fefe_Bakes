@@ -1,0 +1,72 @@
+.create-course-form {
+    max-width: 600px;
+    margin-top: 100px;
+    padding: 20px;
+    background-color: #f5f0f0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.create-course-form h2{
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    font-family: inherit;
+}
+
+textarea {
+    height: 100px;
+    resize: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #aaa;
+}
+
+.input-title,
+.input-price,
+.input-description,
+.input-level,
+.input-video-url,
+.input-recipe-pdf-url,
+.input-image-url,
+.input-image-description {
+    display: block;
+    width: 100%;
+}
+
+.image-group {
+    margin-bottom: 10px;
+}
+
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #4fb8ac;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #3e3e52;
+}

@@ -25,6 +25,7 @@ import { ManageRecipes } from "./pages/Admin/ManageRecipes";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { setId } from "./redux/actions/authActions";
+import CreateCourse from "./pages/Admin/CreateCourse";
 
 
 const App = () => {
@@ -81,6 +82,14 @@ const App = () => {
           element={
             <PrivateRoute>
               <ManageCourses />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/cursos/crear"
+          element={
+            <PrivateRoute>
+              <CreateCourse />
             </PrivateRoute>
           }
         />

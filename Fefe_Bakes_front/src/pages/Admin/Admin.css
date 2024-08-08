@@ -44,82 +44,34 @@
     margin-bottom: 20px;
 }
 
-.form-curso {
-    background-color: #f5f5f5;
+.container-create-course{
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 100px;
 }
 
-
-.form-curso-admin h2 {
-    margin-bottom: 20px;
+.admin-utils{
+    display: flex;
+    gap: 20px;
 }
 
-.form-group-admin {
-    margin-bottom: 15px;
-    position: relative;
+.manage-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    gap: 20px;
 }
 
-.form-group-admin input,
-.form-group-admin textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--color-4);
-    border-radius: 5px;
-}
-
-.form-group-admin input::placeholder,
-.form-group-admin textarea::placeholder {
+.manage-link{
+    text-decoration: none;
     color: black;
+    font-size: 14px;
 }
 
-.form-group-admin input:focus::placeholder,
-.form-group-admin textarea:focus::placeholder {
-    color: black;
-}
-
-.form-group-admin input:not(:placeholder-shown),
-.form-group-admin textarea:not(:placeholder-shown) {
-    padding-top: 20px;
-    padding-bottom: 10px;
-}
-
-.form-group-admin input:not(:placeholder-shown) + label,
-.form-group-admin textarea:not(:placeholder-shown) + label {
-    top: 0;
-    font-size: 12px;
-    color: black;
-}
-
-.form-group-admin label {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 16px;
-    color: black;
-    transition: all 0.3s ease;
-}
-
-.form-group-admin input:focus + label,
-.form-group-admin textarea:focus + label {
-    top: 0;
-    font-size: 12px;
-    color: black;
-}
-
-.btn-submit {
-    background-color: var(--color-5);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.btn-submit:hover {
-    background-color: var(--color-5);
+.manage-link label{
+    font-size: 14px;
 }
 
 .course-list {
